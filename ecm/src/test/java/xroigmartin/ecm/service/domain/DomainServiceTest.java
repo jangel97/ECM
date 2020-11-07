@@ -1,4 +1,4 @@
-package xroigmartin.ecm.service;
+package xroigmartin.ecm.service.domain;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
