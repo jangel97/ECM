@@ -1,9 +1,9 @@
 package xroigmartin.ecm.repository;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.AfterEach;
@@ -16,7 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import xroigmartin.ecm.model.domain.Domain;
 
 @DataJpaTest
-@DirtiesContext
+@DirtiesContext	
 class DomainRepositoryTest {
 	
 	@Autowired
@@ -80,7 +80,5 @@ class DomainRepositoryTest {
 		domainRepository.deleteById(domainSave.getId());;
 		assertFalse(domainRepository.findById(domainSave.getId()).isPresent());
 	}
-
-}
 
 }
