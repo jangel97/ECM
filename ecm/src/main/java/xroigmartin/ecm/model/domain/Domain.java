@@ -62,27 +62,27 @@ final public class Domain {
     public String getCodeDomain() {
         return codeDomain;
     }
-
-    public void setCodeDomain(String codeDomain) {
-        this.codeDomain = codeDomain;
+    
+    public void changeCodeDomain(String newCodeDomain) {
+    	this.codeDomain = newCodeDomain;
     }
 
     public String getDescription() {
         return description;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
+    
+    public void changeDescription(String newDescription) {
+    	this.description = newDescription;
     }
 
     public Boolean getEnable() {
         return enable;
     }
 
-    public void setEnable(Boolean enable) {
-        this.enable = enable;
+    public void changeEnable() {
+    	this.enable = !this.enable;
     }
-
+    
     @Override
     public int hashCode() {
         return Objects.hash(id, codeDomain);
