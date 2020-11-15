@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Xavier Roig">
+
+    <!-- Bootstrap CSS -->
+	  <link rel="stylesheet" 
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		  th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title>GCE</title>
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/dominio/dominio.css" th:href="@{/css/dominio/dominio.css}"rel="stylesheet">
+
+  </head>
+  <body class="text-center">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <div class="row">
+            <div class="col-12">
+                <header class="masthead mb-auto">
+                    <div class="inner">
+                        <h3 class="masthead-brand">
+                        <a href="../home.html" th:href="@{/}">GCE</a>
+                        </h3>
+                    <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link active" href="#">Dominio</a>
+                        <a class="nav-link" href="#">Usuario</a>
+                    </nav>
+                    </div>
+                </header>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <main role="main" class="inner cover">
+                    <div class="row mb-1">
+                        <div class="col-10">
+                        </div>
+                        <div class="col-2">
+                            <a href="edit_domain.html" class="btn btn-primary btn-sm"
+                            	th:href="@{/domain/new}">Nuevo dominio</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-hover" >
+                            <thead>
+                                <tr>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Operaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="domain : ${domainList}">
+                                    <td th:text="${domain.codeDomain}">código1</td>
+                                    <td th:text="${domain.description}">Esto es la descripcion del dominio código1</td>
+                                    <td>
+                                        <a href="#" class="btn btn-success btn-sm" role="button" th:href="@{/domainValue/domain/{id}(id=${domain.id})}">Valores</a>
+                                        <a href="#" class="btn btn-primary btn-sm" role="button" th:href="@{/domain/{id}(id=${domain.id})}">Editar</a>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-id="1" data-code_domain="código" data-target="#enable-modal" 
+                                        		th:data-id="${domain.id}" th:data-code_domain="${domain.codeDomain}" th:hidden="${domain.enable}">
+                                        		Activar
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-id="1" data-code_domain="código" data-target="#disable-modal"
+                                        	th:data-id="${domain.id}" th:data-code_domain="${domain.codeDomain}" th:hidden="${!domain.enable}">
+                                        	Desactivar
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+                
+                <div class="modal fade" id="enable-modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Activar dominio</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>¿Está usted seguro de activar el dominio?</p>
+								<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+								<a href="/domain/enable/" class="btn btn-success">Sí</a>
+							</div>
+						</div>
+			
+					</div>
+				</div>
+				
+				<div class="modal fade" id="disable-modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Desactivar dominio</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>¿Está usted seguro de desactivar el dominio?</p>
+								<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+								<a href="/domain/disable/" class="btn btn-danger">Sí</a>
+							</div>
+						</div>
+			
+					</div>
+				</div>
+            </div>
+        </div>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+              <p>
+                <a class="github" href="https://github.com/xroigmartin/gce" target="_blank">
+                </a>
+                <a class="twitter" href="https://twitter.com/xroigmartin" target="_blank">
+                </a>
+                <a class="linkedin" href="https://www.linkedin.com/in/xavier-roig-martin-0a755249/" target="_blank">
+                </a>
+              </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			th:src="@{/webjars/popper.js/umd/jquery.min.js}"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			th:href="@{/webjars/bootstrap/js/bootstrap.min.css}"></script>
+			
+	<script src="../../static/js/dominio/dominio.js" th:src="@{/js/dominio/dominio.js}"></script>
+
+  </body>
+</html>
